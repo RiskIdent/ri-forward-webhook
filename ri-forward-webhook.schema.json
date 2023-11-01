@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Config file for ri-forward-webhook.",
+  "additionalProperties": false,
+  "properties": {
+    "endpoints": {
+      "type": "object",
+      "description": "Map of endpoints, where the keys are the URL paths to match.",
+      "additionalProperties": {
+        "type": "object",
+        "description": "Endpoint definition.",
+        "required": [
+          "forwardTo"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "forwardTo": {
+            "type": "string",
+            "description": "Destination URI to proxy requests for.",
+            "format": "uri"
+          },
+          "methods": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "HTTP methods to listen to. Defaults to [POST]",
+            "items": {
+              "type": "string",
+              "enum": [
+                "GET",
+                "HEAD",
+                "POST",
+                "PUT",
+                "DELETE",
+                "CONNECT",
+                "OPTIONS",
+                "TRACE",
+                "PATCH"
+              ]
+            }
+          },
+          "auth": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Authentication configuration for endpoint.",
+            "additionalProperties": false,
+            "properties": {
+              "githubWebhookSecret": {
+                "type": "string",
+                "description": "Secret value for GitHub Webhook token, used to validate X-Hub-Signature-256 headers."
+              },
+              "githubWebhookSecretFile": {
+                "type": "string",
+                "description": "Path to file containing secret value for GitHub Webhook token, used to validate X-Hub-Signature-256 headers."
+              }
+            }
+          },
+          "noFollowRedirect": {
+            "type": "boolean",
+            "description": "If set to true, then ri-forward-webhook will not follow HTTP redirects, but instead just return the responses as-is."
+          },
+          "insecureSkipVerifyTls": {
+            "type": "boolean",
+            "description": "If set to true, then ri-forward-webhook will ignore any TLS certificate issues with the upstream server."
+          }
+        }
+      }
+    }
+  }
+}

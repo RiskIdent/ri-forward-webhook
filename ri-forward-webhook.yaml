@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=./ri-forward-webhook.schema.json
+
+endpoints:
+  /google:
+    forwardTo: http://google.com
+    methods: [GET, POST]
