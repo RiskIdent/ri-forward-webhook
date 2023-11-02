@@ -1,2 +1,6 @@
 ri-forward-webhook
 *.exe
+
+# NPM
+package-lock.json
+node_modules/
