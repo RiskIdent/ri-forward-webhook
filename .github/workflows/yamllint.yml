@@ -1,0 +1,23 @@
+name: yamllint
+
+on:
+  pull_request:
+    paths:
+      - '**.yaml'
+      - '**.yml'
+      - '.yamllint'
+      - '.github/workflows/yamllint.yml'
+
+jobs:
+  yamllint:
+    runs-on:
+      group: ephemeral_runners
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: yamllint
+        uses: reviewdog/action-yamllint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          fail_on_error: true
