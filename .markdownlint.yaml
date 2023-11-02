@@ -1,0 +1,46 @@
+# Good reference: https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.yaml
+# Docs per rule: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+
+# Default state for all rules
+default: true
+
+# MD003/heading-style/header-style - Heading style
+MD003:
+  # atx style is the "# Heading" style
+  style: atx
+
+# MD004/ul-style - Unordered list style
+MD004:
+  style: dash
+
+# MD010/no-hard-tabs - Hard tabs
+MD010:
+  spaces_per_tab: 4
+
+# MD013/line-length - Line length
+MD013:
+  # Number of characters
+  line_length: 80
+  # Number of characters for headings
+  heading_line_length: 80
+
+  # Include code blocks
+  code_blocks: false
+  # Include tables
+  tables: false
+
+# MD046/code-block-style - Code block style
+MD046:
+  style: fenced
+
+# MD048/code-fence-style - Code fence style
+MD048:
+  style: backtick
+
+# MD049/emphasis-style - Emphasis style should be consistent
+MD049:
+  style: asterisk
+
+# MD050/strong-style - Strong style should be consistent
+MD050:
+  style: asterisk

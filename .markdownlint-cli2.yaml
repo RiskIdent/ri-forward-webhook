@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://github.com/DavidAnson/vscode-markdownlint/raw/main/markdownlint-cli2-config-schema.json
+
+outputFormatters:
+  - - markdownlint-cli2-formatter-pretty
+
+globs:
+  - "**.md"
+  - "!**/node_modules"
+  - "!.git"

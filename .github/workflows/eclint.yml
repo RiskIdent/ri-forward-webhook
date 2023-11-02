@@ -1,0 +1,30 @@
+name: eclint
+
+on:
+  pull_request:
+
+jobs:
+  eclint:
+    runs-on:
+      group: ephemeral_runners
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '>=1.21.0'
+
+      - name: Install eclint
+        run: go install gitlab.com/greut/eclint/cmd/eclint@v0.5.0
+
+      - name: Log eclint version
+        run: eclint --version
+
+      - name: run eclint
+        run: eclint -fix
+
+      - uses: reviewdog/action-suggester@v1
+        with:
+          tool_name: eclint
+          fail_on_error: true
