@@ -1,6 +1,10 @@
+// SPDX-FileCopyrightText: 2023 Risk.Ident GmbH <contact@riskident.com>
+//
+// SPDX-License-Identifier: CC0-1.0
+
 module github.com/RiskIdent/ri-forward-webhook
 
-go 1.21.1
+go 1.21.3
 
 require (
 	github.com/gin-gonic/gin v1.9.1
