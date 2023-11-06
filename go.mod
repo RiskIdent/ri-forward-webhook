@@ -1,4 +1,4 @@
-module github.2rioffice.com/platform/ri-forward-webhook
+module github.com/RiskIdent/ri-forward-webhook
 
 go 1.21.1
 
