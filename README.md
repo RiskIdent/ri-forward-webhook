@@ -14,7 +14,7 @@ internal Jira. We expose `ri-forward-webhook`, and with the additional
 webhook signature validation we can feel safe on not letting bad actors
 sending arbitrary requests to our precious Jira.
 
-In addition, in the [iac repo](https://github.2rioffice.com/platform/iac),
+In addition, in our infrastructure as code repo,
 we use [Cloudflare Tunnels](https://www.cloudflare.com/products/tunnel/)
 to expose `ri-forward-webhook`, so that nothing else in our Kubernetes cluster
 is accidentally exposed to the Internet.
@@ -66,5 +66,5 @@ go run .
 ## Building
 
 ```bash
-podman build . -t docker-riskident.2rioffice.com/platform/ri-forward-webhook
+podman build . -t ghcr.io/riskident/ri-forward-webhook
 ```
