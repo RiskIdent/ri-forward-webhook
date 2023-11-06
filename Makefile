@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Risk.Ident GmbH <contact@riskident.com>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 .PHONY: build
 build: ri-forward-webhook
 
@@ -23,7 +27,7 @@ node_modules: package.json
 	npm install
 
 .PHONY: lint
-lint: lint-md lint-go
+lint: lint-md lint-go lint-license
 
 .PHONY: lint-fix
 lint-fix: lint-md-fix lint-go-fix
@@ -45,3 +49,7 @@ lint-go:
 lint-go-fix:
 	@echo goimports -d -w '**/*.go'
 	@goimports -d -w $(shell git ls-files "*.go")
+
+.PHONY: lint-license
+lint-license:
+	reuse lint

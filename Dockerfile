@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Risk.Ident GmbH <contact@riskident.com>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 FROM docker.io/library/golang:1.21-alpine AS build
 
 WORKDIR /opt/ri-forward-webhook
