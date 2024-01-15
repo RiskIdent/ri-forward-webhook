@@ -4,7 +4,7 @@
 
 module github.com/RiskIdent/ri-forward-webhook
 
-go 1.21.5
+go 1.21.6
 
 require (
 	github.com/gin-gonic/gin v1.9.1
