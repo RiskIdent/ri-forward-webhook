@@ -9,9 +9,9 @@ COPY go.mod go.sum .
 RUN go mod download
 
 COPY *.go .
-ENV CGO_ENABLED=0
-RUN go install
+RUN CGO_ENABLED=0 go install
 
+# NOTE: When updating here, remember to also update in ./goreleaser.Dockerfile
 FROM scratch
 COPY --from=build /go/bin/ri-forward-webhook /usr/bin/
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
