@@ -1,0 +1,75 @@
+# SPDX-FileCopyrightText: 2024 Risk.Ident GmbH <contact@riskident.com>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+dockers:
+  - image_templates:
+      - "ghcr.io/riskident/{{ .ProjectName }}:v{{ .Version }}-amd64"
+    dockerfile: goreleaser.Dockerfile
+    use: buildx
+    goarch: amd64
+    goos: linux
+    build_flag_templates:
+      - --platform=linux/amd64
+      - --label=org.opencontainers.image.version={{ .Version }}
+      - --label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}
+      - --label=org.opencontainers.image.revision={{ .FullCommit }}
+
+  - image_templates:
+      - "ghcr.io/riskident/{{ .ProjectName }}:v{{ .Version }}-arm64v8"
+    dockerfile: goreleaser.Dockerfile
+    use: buildx
+    goarch: arm64
+    goos: linux
+    build_flag_templates:
+      - --platform=linux/arm64/v8
+      - --label=org.opencontainers.image.version={{ .Version }}
+      - --label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}
+      - --label=org.opencontainers.image.revision={{ .FullCommit }}
+
+docker_manifests:
+  - name_template: "ghcr.io/riskident/{{ .ProjectName }}:v{{ .Version }}"
+    image_templates:
+      - "ghcr.io/riskident/{{ .ProjectName }}:v{{ .Version }}-amd64"
+      - "ghcr.io/riskident/{{ .ProjectName }}:v{{ .Version }}-arm64v8"
+  - name_template: "ghcr.io/riskident/{{ .ProjectName }}:latest"
+    image_templates:
+      - "ghcr.io/riskident/{{ .ProjectName }}:v{{ .Version }}-amd64"
+      - "ghcr.io/riskident/{{ .ProjectName }}:v{{ .Version }}-arm64v8"
+
+archives:
+  - format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+

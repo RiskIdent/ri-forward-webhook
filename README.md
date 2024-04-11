@@ -77,6 +77,20 @@ go run .
 podman build . -t ghcr.io/riskident/ri-forward-webhook
 ```
 
+## Releasing
+
+1. Create a new release on GitHub, with "v" prefix on version: <https://github.com/RiskIdent/ri-forward-webhook/releases/new>
+
+2. Write a small changelog, like so:
+
+   ```markdown
+   ## Changes (since v0.3.0)
+
+   - Added some feature. (#123)
+   ```
+
+3. Our GitHub Action with goreleaser will build and add artifacts to release
+
 ## License
 
 This repository complies with the [REUSE recommendations](https://reuse.software/).
