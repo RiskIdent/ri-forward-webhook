@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-FROM docker.io/library/golang:1.22.3-alpine AS build
+FROM docker.io/library/golang:1.22.4-alpine AS build
 
 WORKDIR /opt/ri-forward-webhook
 COPY go.mod go.sum .
