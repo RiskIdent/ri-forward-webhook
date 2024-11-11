@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "markdownlint-cli2": "^0.14.0",
+    "markdownlint-cli2": "^0.15.0",
     "markdownlint-cli2-formatter-pretty": "^0.0.7"
   }
 }
