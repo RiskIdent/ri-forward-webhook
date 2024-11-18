@@ -8,6 +8,10 @@ SPDX-License-Identifier: CC-BY-4.0
 
 [![REUSE status](https://api.reuse.software/badge/github.com/RiskIdent/ri-forward-webhook)](https://api.reuse.software/info/github.com/RiskIdent/ri-forward-webhook)
 
+> [!NOTE]
+> This project is archived because it is no longer in use
+> and will therefore no longer be maintained.
+
 HTTP server that validates and forwards webhooks.
 
 Implements [GitHub webhook validation](https://docs.github.com/en/enterprise-server@3.10/webhooks/using-webhooks/validating-webhook-deliveries#validating-webhook-deliveries)
